@@ -1,0 +1,4 @@
+askoheat_emergency_on:
+  url: http://192.168.0.147/on
+askoheat_emergency_off:
+  url: http://192.168.0.147/off

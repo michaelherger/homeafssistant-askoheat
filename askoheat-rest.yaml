@@ -1,0 +1,69 @@
+- scan_interval: 30
+  resource: http://192.168.0.147/status.json
+  sensor:
+    - name: AskoHeat Version
+      unique_id: askoheat.version
+      value_template: '{{ value_json.ASKOHEAT_PLUS_INFO.SOFTWARE_VERSION if value_json.ASKOHEAT_PLUS_INFO.SOFTWARE_VERSION is defined else this.state }}'
+
+    - name: AskoHeat Heater Step Info
+      unique_id: askoheat.heater.step.info
+      value_template: '{{ value_json.ACTUAL_VALUES.INFO_ACTUAL_HEATER_STEP if value_json.ACTUAL_VALUES.INFO_ACTUAL_HEATER_STEP is defined else this.state }}'
+
+    - name: AskoHeat Heater Step
+      unique_id: askoheat.heater.step
+      value_template: '{{ value_json.ACTUAL_VALUES.ACTUAL_HEATER_STEP if value_json.ACTUAL_VALUES.ACTUAL_HEATER_STEP is defined else this.state }}'
+      state_class: measurement
+
+    - name: AskoHeat Heater Power
+      unique_id: askoheat.heater.power
+      value_template: '{{ (value_json.ACTUAL_VALUES.ACTUAL_HEATER_LOAD | replace("Watt", "")) if value_json.ACTUAL_VALUES.ACTUAL_HEATER_LOAD is defined else this.state }}'
+      state_class: measurement
+      device_class: power
+      unit_of_measurement: "W"
+
+    - name: AskoHeat Temperature Limit
+      unique_id: askoheat.temperature.limit
+      value_template: '{{ (value_json.TEMPERATURE_CONTROL.ACTUAL_TEMPERATURE_LIMIT | replace(" °C", "")) if value_json.ACTUAL_VALUES.ACTUAL_TEMPERATURE_LIMIT is defined else this.state }}'
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
+
+    - name: AskoHeat Temperature 0
+      unique_id: askoheat.tempereature.0
+      value_template: '{{ (value_json.ACTUAL_VALUES.TEMP_SENSOR_0 | replace(" °C", "") | replace("not connected", -0)) if value_json.ACTUAL_VALUES.TEMP_SENSOR_0 is defined else this.state }}'
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
+
+    - name: AskoHeat Temperature 1
+      unique_id: askoheat.tempereature.1
+      value_template: '{{ (value_json.ACTUAL_VALUES.TEMP_SENSOR_1 | replace(" °C", "") | replace("not connected", -0)) if value_json.ACTUAL_VALUES.TEMP_SENSOR_1 is defined else this.state }}'
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
+
+    - name: AskoHeat Temperature 2
+      unique_id: askoheat.tempereature.2
+      value_template: '{{ (value_json.ACTUAL_VALUES.TEMP_SENSOR_2 | replace(" °C", "") | replace("not connected", -0)) if value_json.ACTUAL_VALUES.TEMP_SENSOR_2 is defined else this.state }}'
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
+
+    - name: AskoHeat Temperature 3
+      unique_id: askoheat.tempereature.3
+      value_template: '{{ (value_json.ACTUAL_VALUES.TEMP_SENSOR_3 | replace(" °C", "") | replace("not connected", -0)) if value_json.ACTUAL_VALUES.TEMP_SENSOR_3 is defined else this.state }}'
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
+
+    - name: AskoHeat Temperature 4
+      unique_id: askoheat.tempereature.4
+      value_template: '{{ (value_json.ACTUAL_VALUES.TEMP_SENSOR_4 | replace(" °C", "") | replace("not connected", -0)) if value_json.ACTUAL_VALUES.TEMP_SENSOR_4 is defined else this.state }}'
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
+
+  binary_sensor:
+    - name: AskoHeat Emergency Mode
+      unique_id: askoheat.emergency_mode
+      value_template: '{{ value_json.ACTUAL_VALUES.INFO_ACTUAL_HEATER_STEP == "Emergency Mode" if value_json.ACTUAL_VALUES.INFO_ACTUAL_HEATER_STEP is defined else this.state }}'

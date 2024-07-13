@@ -1,0 +1,14 @@
+- platform: template
+  switches:
+    askoheat_emergency_switch:
+      friendly_name: Askoheat Emergency Switch
+      value_template: "{{ is_state('binary_sensor.askoheat_emergency_mode', 'on') }}"
+      unique_id: askoheat.emergency_mode_toggle
+      turn_on:
+        - service: rest_command.askoheat_emergency_on
+        - service: homeassistant.update_entity
+          entity_id: binary_sensor.askoheat_emergency_mode
+      turn_off:
+        - service: rest_command.askoheat_emergency_off
+        - service: homeassistant.update_entity
+          entity_id: binary_sensor.askoheat_emergency_mode
