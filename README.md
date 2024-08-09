@@ -38,6 +38,8 @@ Just make sure you reset this setting during development, or you might miss impo
 
 The ASKOHEAT+ provides a simple JSON API to read/write important parameters.
 http://download.askoma.com/askofamily_plus/Bedienungsanleitung_ASKOHEAT_plus.pdf
+http://download.askoma.com/askofamily_plus/modbus/askoheat-json.html
+http://download.askoma.com/askofamily_plus/modbus/askoheat-python.html
 
 | BROWSER BEFEHL | BEMERKUNG |
 | ----- | ----- |

@@ -2,3 +2,8 @@ askoheat_emergency_on:
   url: http://192.168.0.147/on
 askoheat_emergency_off:
   url: http://192.168.0.147/off
+askoheat_temperature_load_setpoint_set:
+  url: http://192.168.0.147/server1/
+  method: PUT
+  content_type: "application/json"
+  payload: '{"MODBUS_CON_TEMPERATURE_LOAD_SETPOINT":"{{ temperature }}"}'
